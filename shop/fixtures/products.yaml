@@ -1,15 +1,108 @@
+# Продукты
 - model: shop.product
   pk: 1
   fields:
-    name: Стол
-    price: 2000
+    name: Ноутбук Acer Aspire 5
+    price: 35000
 - model: shop.product
   pk: 2
   fields:
-    name: Стул
-    price: 1000
+    name: Мышь Logitech MX Master 3
+    price: 5000
 - model: shop.product
   pk: 3
   fields:
-    name: Табурет
-    price: 500
+    name: Клавиатура Razer BlackWidow V3
+    price: 8000
+- model: shop.product
+  pk: 4
+  fields:
+    name: Монитор Samsung 24" Full HD
+    price: 12000
+- model: shop.product
+  pk: 5
+  fields:
+    name: Внешний жесткий диск Seagate 1TB
+    price: 4500
+- model: shop.product
+  pk: 6
+  fields:
+    name: Видеокарта MSI GeForce GTX 1660
+    price: 25000
+- model: shop.product
+  pk: 7
+  fields:
+    name: Системный блок HP Pavilion Gaming
+    price: 60000
+- model: shop.product
+  pk: 8
+  fields:
+    name: Наушники Sony WH-1000XM4
+    price: 22000
+
+# Промокоды
+- model: shop.promocode
+  pk: 1
+  fields:
+    code: DISCOUNT10
+    description: Скидка 10% на специальные товары
+- model: shop.promocode
+  pk: 2
+  fields:
+    code: NEWYEAR
+    description: Новогодний промокод
+- model: shop.promocode
+  pk: 3
+  fields:
+    code: GAMER20
+    description: Скидка 20% на игровые товары
+
+# Связь продуктов с промокодами
+- model: shop.product
+  pk: 1
+  fields:
+    name: Ноутбук Acer Aspire 5
+    price: 35000
+    promo_codes: [1]  # Продукт доступен с промокодом DISCOUNT10
+- model: shop.product
+  pk: 2
+  fields:
+    name: Мышь Logitech MX Master 3
+    price: 5000
+    promo_codes: [1, 2]  # Продукт доступен с промокодами DISCOUNT10 и NEWYEAR
+- model: shop.product
+  pk: 3
+  fields:
+    name: Клавиатура Razer BlackWidow V3
+    price: 8000
+    promo_codes: [3]  # Продукт доступен только с промокодом GAMER20
+- model: shop.product
+  pk: 4
+  fields:
+    name: Монитор Samsung 24" Full HD
+    price: 12000
+    promo_codes: [1, 3]  # Продукт доступен с промокодами DISCOUNT10 и GAMER20
+- model: shop.product
+  pk: 5
+  fields:
+    name: Внешний жесткий диск Seagate 1TB
+    price: 4500
+    promo_codes: [2]  # Продукт доступен только с промокодом NEWYEAR
+- model: shop.product
+  pk: 6
+  fields:
+    name: Видеокарта MSI GeForce GTX 1660
+    price: 25000
+    promo_codes: [3]  # Продукт доступен только с промокодом GAMER20
+- model: shop.product
+  pk: 7
+  fields:
+    name: Системный блок HP Pavilion Gaming
+    price: 60000
+    promo_codes: [1, 3]  # Продукт доступен с промокодами DISCOUNT10 и GAMER20
+- model: shop.product
+  pk: 8
+  fields:
+    name: Наушники Sony WH-1000XM4
+    price: 22000
+    promo_codes: [2]  # Продукт доступен только с промокодом NEWYEAR
