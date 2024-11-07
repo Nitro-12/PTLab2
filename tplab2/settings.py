@@ -12,12 +12,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 import django_heroku
-import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -29,7 +27,6 @@ SECRET_KEY = 'django-insecure-%hodks^u@arq^bv-tms#o!v$c*p6_5o%yvw!!u+n9ber@*g9*f
 DEBUG = False
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -74,13 +71,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'tplab2.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+<<<<<<< HEAD
         'NAME': 'django_db',
         'USER': 'postgres',
         'PASSWORD': os.environ['DATABASE_PASSWORD'] if 'DATABASE_PASSWORD' in os.environ else '',
@@ -95,6 +92,16 @@ DATABASES = {
 DATABASE_URL = os.environ.get('DATABASE_URL')
 db_from_env = dj_database_url.config(default=DATABASE_URL, conn_max_age=500, ssl_require=False)
 
+=======
+        'NAME': 'django_db_eg3g',  # имя базы данных
+        'USER': 'django_db_eg3g_user',  # имя пользователя
+        'PASSWORD': 'l7Yp3LjLoFavt1MU4NbCEikzZibbB8LQ',  # пароль
+        'HOST': 'dpg-csmcrj0gph6c73agjkvg-a.oregon-postgres.render.com',  # хост
+        'PORT': '5432',  # порт
+    }
+}
+
+>>>>>>> ba2f9577f476098ba227deef984b094d43cb6763
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -113,7 +120,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -127,7 +133,6 @@ USE_L10N = True
 
 USE_TZ = False
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -139,4 +144,10 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_ROOT = os.path.join(BASE_DIR, STATIC_URL)
+<<<<<<< HEAD
 django_heroku.settings(locals() ,databases=False)
+=======
+
+# Configure Django App for Heroku.
+django_heroku.settings(locals())
+>>>>>>> ba2f9577f476098ba227deef984b094d43cb6763
