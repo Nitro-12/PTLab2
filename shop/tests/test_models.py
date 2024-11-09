@@ -5,8 +5,8 @@ from datetime import datetime
 
 class PromoCodeTestCase(TestCase):
     def setUp(self):
-        PromoCode.objects.create(code="DISCOUNT10", description="10% Discount")
-        PromoCode.objects.create(code="NEWYEAR", description="New Year Sale")
+        PromoCode.objects.create(code="DISCOUNT10", description="Скидка 10%")
+        PromoCode.objects.create(code="NEWYEAR", description="Скидка на новый год")
 
     def test_correctness_types(self):
         discount_code = PromoCode.objects.get(code="DISCOUNT10")
@@ -21,17 +21,17 @@ class PromoCodeTestCase(TestCase):
         discount_code = PromoCode.objects.get(code="DISCOUNT10")
         newyear_code = PromoCode.objects.get(code="NEWYEAR")
 
-        self.assertEqual(discount_code.description, "10% Discount")
-        self.assertEqual(newyear_code.description, "New Year Sale")
+        self.assertEqual(discount_code.description, "Скидка 10%")
+        self.assertEqual(newyear_code.description, "Скидка на новый год")
 
 
 class ProductTestCase(TestCase):
     def setUp(self):
-        self.promo1 = PromoCode.objects.create(code="SUMMER", description="Summer Sale")
-        self.promo2 = PromoCode.objects.create(code="WINTER", description="Winter Sale")
+        self.promo1 = PromoCode.objects.create(code="SUMMER", description="Летняя скидка")
+        self.promo2 = PromoCode.objects.create(code="WINTER", description="Зимняя скидка")
 
-        self.product1 = Product.objects.create(name="laptop", price=50000)
-        self.product2 = Product.objects.create(name="mouse", price=1000)
+        self.product1 = Product.objects.create(name="Компьютер RTX-strike", price=50000)
+        self.product2 = Product.objects.create(name="Компьютер RTX-strike 2.0", price=1000)
 
         # Add promo codes to products
         self.product1.promo_codes.set([self.promo1, self.promo2])
@@ -54,15 +54,15 @@ class ProductTestCase(TestCase):
 
 class PurchaseTestCase(TestCase):
     def setUp(self):
-        self.promo = PromoCode.objects.create(code="DISCOUNT20", description="20% Discount")
-        self.product = Product.objects.create(name="tablet", price=30000)
+        self.promo = PromoCode.objects.create(code="DISCOUNT20", description="Скидка 20 процентов")
+        self.product = Product.objects.create(name="Компьютер RTX-strike 3.0", price=30000)
         self.product.promo_codes.add(self.promo)
         self.datetime = datetime.now()
 
         self.purchase = Purchase.objects.create(
             product=self.product,
-            person="Petrov",
-            address="Lenina St."
+            person="Пётр Петров",
+            address="Богунская, д.10"
         )
 
     def test_correctness_types(self):
@@ -71,8 +71,8 @@ class PurchaseTestCase(TestCase):
         self.assertIsInstance(self.purchase.date, datetime)
 
     def test_correctness_data(self):
-        self.assertEqual(self.purchase.person, "Petrov")
-        self.assertEqual(self.purchase.address, "Lenina St.")
+        self.assertEqual(self.purchase.person, "Пётр Петров")
+        self.assertEqual(self.purchase.address, "Богунская, д.10")
         # Test date ignoring microseconds for accuracy
         self.assertEqual(self.purchase.date.replace(microsecond=0), self.datetime.replace(microsecond=0))
 
