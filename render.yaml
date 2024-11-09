@@ -1,0 +1,27 @@
+version: 1
+services:
+  - type: web
+    name: PTLab2
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+    startCommand: |
+      gunicorn tplab2.wsgi:application --bind 0.0.0.0:$PORT
+    autoDeploy: true
+    envVars:
+      - key: SECRET_KEY
+        value: "django-insecure-%hodks^u@arq^bv-tms#o!v$c*p6_5o%yvw!!u+n9ber@*g9*f"
+      - key: DEBUG
+        value: "True"
+      - key: ALLOWED_HOSTS
+        value: "localhost,127.0.0.1,ptlab2.onrender.com"
+      - key: DATABASE_URL
+        value: "postgresql://django_db_eg3g_user:l7Yp3LjLoFavt1MU4NbCEikzZibbB8LQ@dpg-csmcrj0gph6c73agjkvg-a.oregon-postgres.render.com/django_db_eg3g"
+    migrations:
+      command: python manage.py migrate
+    postDeploy:
+      command: python manage.py loaddata products.yaml
+    healthCheck:
+      path: /health
+      protocol: HTTP
+      port: 8000
