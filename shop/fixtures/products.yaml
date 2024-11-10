@@ -39,6 +39,7 @@
   fields:
     name: Наушники Sony WH-1000XM4
     price: 22000
+- model: shop.product
   pk: 9
   fields:
     name: Наушники Sony H-1000XM4
