@@ -20,8 +20,14 @@ services:
     migrations:
       command: python manage.py migrate
     postDeploy:
-      command: python manage.py loaddata shop/fixtures/products.yaml
+      command: |
+        if [ -f shop/fixtures/products.yaml ]; then
+          python manage.py loaddata shop/fixtures/products.yaml;
+        else
+          echo "File products.yaml not found.";
+        fi
     healthCheck:
       path: /health
       protocol: HTTP
       port: 8000
+
