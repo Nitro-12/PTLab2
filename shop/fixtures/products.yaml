@@ -39,6 +39,10 @@
   fields:
     name: Наушники Sony WH-1000XM4
     price: 22000
+  pk: 9
+  fields:
+    name: Наушники Sony H-1000XM4
+    price: 22000
 
 # Промокоды
 - model: shop.promocode
