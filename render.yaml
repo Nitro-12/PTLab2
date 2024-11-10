@@ -20,7 +20,7 @@ services:
     migrations:
       command: python manage.py migrate
     postDeploy:
-      command: python manage.py loaddata products.yaml
+      command: python manage.py loaddata shop/fixtures/products.yaml
     healthCheck:
       path: /health
       protocol: HTTP
