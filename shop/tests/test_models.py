@@ -33,7 +33,7 @@ class ProductTestCase(TestCase):
         self.product1 = Product.objects.create(name="Компьютер RTX-strike", price=50000)
         self.product2 = Product.objects.create(name="Компьютер RTX-strike 2.0", price=1000)
 
-        # Add promo codes to products
+
         self.product1.promo_codes.set([self.promo1, self.promo2])
         self.product2.promo_codes.add(self.promo1)
 
@@ -73,9 +73,7 @@ class PurchaseTestCase(TestCase):
     def test_correctness_data(self):
         self.assertEqual(self.purchase.person, "Пётр Петров")
         self.assertEqual(self.purchase.address, "Богунская, д.10")
-        # Test date ignoring microseconds for accuracy
         self.assertEqual(self.purchase.date.replace(microsecond=0), self.datetime.replace(microsecond=0))
 
     def test_product_promo_codes(self):
-        # Ensure the promo code is correctly linked to the purchased product
         self.assertIn(self.promo, self.product.promo_codes.all())
